@@ -23,9 +23,10 @@ jobs:
     - uses: actions/checkout@v2
 
     # Runs a single command using the runners shell
-    - name: Run a one-line script
+    - name: Build and push docker image
       uses: docker/build-push-action@v1.1.0
       with:
+        cache_froms: chrsep/chavez:latest
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: chrsep/chavez
