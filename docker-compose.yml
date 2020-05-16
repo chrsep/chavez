@@ -1,6 +1,22 @@
 version: "3"
 services:
+#  chavez:
+#    build: .
+#    container_name: "chavez"
+#    depends_on:
+#      - postgres
+#    environment:
+#      DATABASE_USER: "postgres"
+#      DATABASE_PASS: "postgres"
+#      DATABASE_NAME: "postgres"
+#      DATABASE_HOST: "chavez-postgres"
+#      SECRET_KEY_BASE: "asdasdasdasdasd"
+#      HOSTNAME: "localhost"
+#      PORT: "4000"
+#    ports:
+#      - "4000:4000"
   postgres:
+    container_name: "chavez-postgres"
     image: library/postgres:12.1
     ports:
       - "5432:5432"
