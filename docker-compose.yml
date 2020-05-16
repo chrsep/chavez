@@ -1,0 +1,6 @@
+version: "3"
+services:
+  postgres:
+    image: library/postgres:12.1
+    ports:
+      - "5432:5432"
