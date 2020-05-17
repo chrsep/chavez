@@ -38,12 +38,12 @@ defmodule Chavez.MixProject do
       {:phoenix_ecto, "~> 4.0"},
       {:ecto_sql, "~> 3.1"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 2.11"},
+      {:phoenix_html, "~> 2.14"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.18"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.1"},
-      {:distillery, "~> 2.0"},
+      {:jason, "~> 1.2"},
+      {:plug_cowboy, "~> 2.2"},
+      {:distillery, "~> 2.1"},
       {:phoenix_live_view, "~> 0.12.1"},
       {:floki, ">= 0.0.0", only: :test}
     ]
