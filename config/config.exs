@@ -18,6 +18,7 @@ config :chavez, ChavezWeb.Endpoint,
   server: true,
   root: ".",
   cache_static_manifest: "priv/static/cache_manifest.json",
+  pubsub_server: Chavez.PubSub,
   version: Application.spec(:chavez, :vsn)
 
 # Configures Elixir's Logger

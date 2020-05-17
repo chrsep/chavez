@@ -24,14 +24,15 @@ defmodule ChavezWeb do
       import Plug.Conn
       import ChavezWeb.Gettext
       alias ChavezWeb.Router.Helpers, as: Routes
+      import Phoenix.LiveView.Controller
     end
   end
 
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/chavez_web/templates",
-        namespace: ChavezWeb
+          root: "lib/chavez_web/templates",
+          namespace: ChavezWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
@@ -42,6 +43,7 @@ defmodule ChavezWeb do
       import ChavezWeb.ErrorHelpers
       import ChavezWeb.Gettext
       alias ChavezWeb.Router.Helpers, as: Routes
+      import Phoenix.LiveView.Helpers
     end
   end
 
@@ -50,6 +52,7 @@ defmodule ChavezWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
   end
 
