@@ -18,5 +18,7 @@ services:
   postgres:
     container_name: "chavez-postgres"
     image: library/postgres:12.3
+    environment:
+      POSTGRES_DB: "chavez_dev"
     ports:
       - "5432:5432"
