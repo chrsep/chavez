@@ -4,7 +4,7 @@ defmodule ChavezWeb.Router do
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
-    plug :fetch_flash
+    plug :fetch_live_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -17,6 +17,12 @@ defmodule ChavezWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+  end
+
+  # TODO: Secure this in prod
+  scope "/" do
+    pipe_through :browser
+    live_dashboard "/dashboard", metrics: ChavezWeb.Telemetry
   end
 
   # Other scopes may use custom stacks.

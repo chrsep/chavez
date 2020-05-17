@@ -14,7 +14,8 @@ defmodule Chavez.Application do
       ChavezWeb.Endpoint,
       # Starts a worker by calling: Chavez.Worker.start_link(arg)
       # {Chavez.Worker, arg},
-      {Phoenix.PubSub, [name: Chavez.PubSub, adapter: Phoenix.PubSub.PG2]}
+      {Phoenix.PubSub, [name: Chavez.PubSub, adapter: Phoenix.PubSub.PG2]},
+      ChavezWeb.Telemetry
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
