@@ -17,6 +17,6 @@ services:
 #      - "4000:4000"
   postgres:
     container_name: "chavez-postgres"
-    image: library/postgres:12.1
+    image: library/postgres:12.3
     ports:
       - "5432:5432"
