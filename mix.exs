@@ -20,7 +20,7 @@ defmodule Chavez.MixProject do
   def application do
     [
       mod: {Chavez.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :os_mon]
     ]
   end
 
@@ -45,7 +45,10 @@ defmodule Chavez.MixProject do
       {:plug_cowboy, "~> 2.2"},
       {:distillery, "~> 2.1"},
       {:phoenix_live_view, "~> 0.12.1"},
-      {:floki, ">= 0.0.0", only: :test}
+      {:floki, ">= 0.0.0", only: :test},
+      {:phoenix_live_dashboard, "~> 0.2"},
+      {:telemetry_poller, "~> 0.4"},
+      {:telemetry_metrics, "~> 0.4"},
     ]
   end
 

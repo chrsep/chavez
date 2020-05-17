@@ -19,6 +19,12 @@ defmodule ChavezWeb.Router do
     get "/", PageController, :index
   end
 
+  # TODO: Secure this in prod
+  scope "/" do
+    pipe_through :browser
+    live_dashboard "/dashboard", metrics: ChavezWeb.Telemetry
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", ChavezWeb do
   #   pipe_through :api
