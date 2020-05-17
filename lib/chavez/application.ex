@@ -11,9 +11,10 @@ defmodule Chavez.Application do
       # Start the Ecto repository
       Chavez.Repo,
       # Start the endpoint when the application starts
-      ChavezWeb.Endpoint
+      ChavezWeb.Endpoint,
       # Starts a worker by calling: Chavez.Worker.start_link(arg)
       # {Chavez.Worker, arg},
+      {Phoenix.PubSub, [name: Chavez.PubSub, adapter: Phoenix.PubSub.PG2]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
