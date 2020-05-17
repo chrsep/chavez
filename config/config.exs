@@ -16,6 +16,8 @@ config :chavez, ChavezWeb.Endpoint,
   secret_key_base: "4bkuIYW17av5dKJ9HcRd1wEohfMFjcszP8auXbyA13RmkhgfEZzcppNJUoO8N3IU",
   render_errors: [view: ChavezWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Chavez.PubSub, adapter: Phoenix.PubSub.PG2],
+  server: true,
+  root: ".",
   cache_static_manifest: "priv/static/cache_manifest.json",
   version: Application.spec(:chavez, :vsn)
 
