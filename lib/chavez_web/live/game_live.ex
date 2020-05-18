@@ -13,7 +13,7 @@ defmodule ChavezWeb.GameLive do
 
     socket =
       socket
-#      |> assign(:timer_ref, nil)
+      #      |> assign(:timer_ref, nil)
       |> assign(:tries, 0)
       |> assign(:time, 0)
       |> assign(:valueTable, valueTable)
@@ -38,8 +38,9 @@ defmodule ChavezWeb.GameLive do
       %{first: first} when first == result ->
         {:noreply, socket}
 
-      %{first: first, second: second, valueTable: values, time: time } when second == nil ->
+      %{first: first, second: second, valueTable: values, time: time} when second == nil ->
         :timer.send_after(300, self(), :reset)
+
         if time == 0 do
           :timer.send_interval(1000, self(), :increment_time)
         end
@@ -48,15 +49,16 @@ defmodule ChavezWeb.GameLive do
           first_value = values[first]
           second_value = values[result]
 
-          new_truth_table = case first_value do
-            ^second_value -> %{old_truth_table | first => true, result => true}
-            _ -> old_truth_table
-          end
+          new_truth_table =
+            case first_value do
+              ^second_value -> %{old_truth_table | first => true, result => true}
+              _ -> old_truth_table
+            end
 
-#          if new_truth_table |> Map.values() |> Enum.all?() do
-#            :timer.cancel(timer_ref)
-#          end
-#          new_truth_table
+          #          if new_truth_table |> Map.values() |> Enum.all?() do
+          #            :timer.cancel(timer_ref)
+          #          end
+          #          new_truth_table
         end
 
         {
@@ -65,7 +67,7 @@ defmodule ChavezWeb.GameLive do
           |> update(:truthTable, update_truth_table)
           |> update(:tries, &(&1 + 1))
           |> assign(:second, result)
-#          |> assign(:timer_ref, timer_ref)
+          #          |> assign(:timer_ref, timer_ref)
         }
 
       _ ->
