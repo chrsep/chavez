@@ -13,7 +13,7 @@ defmodule ChavezWeb.GameLive do
 
     socket =
       socket
-      #      |> assign(:timer_ref, nil)
+      |> assign(:tref, nil)
       |> assign(:tries, 0)
       |> assign(:time, 0)
       |> assign(:valueTable, valueTable)
@@ -42,7 +42,7 @@ defmodule ChavezWeb.GameLive do
         :timer.send_after(300, self(), :reset)
 
         if time == 0 do
-          :timer.send_interval(1000, self(), :increment_time)
+          send(self(), :start_timer)
         end
 
         update_truth_table = fn old_truth_table ->
@@ -55,10 +55,11 @@ defmodule ChavezWeb.GameLive do
               _ -> old_truth_table
             end
 
-          #          if new_truth_table |> Map.values() |> Enum.all?() do
-          #            :timer.cancel(timer_ref)
-          #          end
-          #          new_truth_table
+          if new_truth_table |> Map.values() |> Enum.all?() do
+            send(self(), :stop_timer)
+          end
+
+          new_truth_table
         end
 
         {
@@ -87,6 +88,16 @@ defmodule ChavezWeb.GameLive do
       |> assign(:first, nil)
       |> assign(:second, nil)
     }
+  end
+
+  def handle_info(:start_timer, socket) do
+    {:ok, tref} = :timer.send_interval(1000, self(), :increment_time)
+    {:noreply, assign(socket, :tref, tref)}
+  end
+
+  def handle_info(:stop_timer, %{assigns: %{tref: tref}} = socket) do
+    :timer.cancel(tref)
+    {:noreply, assign(socket, :tref, nil)}
   end
 
   def handle_info(:increment_time, socket) do
