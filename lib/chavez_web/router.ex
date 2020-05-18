@@ -7,6 +7,7 @@ defmodule ChavezWeb.Router do
     plug :fetch_live_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :put_root_layout, {ChavezWeb.LayoutView, :root}
   end
 
   pipeline :api do
@@ -16,7 +17,7 @@ defmodule ChavezWeb.Router do
   scope "/", ChavezWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", GameLive
   end
 
   # TODO: Secure this in prod
