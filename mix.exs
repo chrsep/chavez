@@ -47,7 +47,7 @@ defmodule Chavez.MixProject do
       {:phoenix_live_view, "~> 0.12.1"},
       {:floki, ">= 0.0.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.2"},
-      {:telemetry_poller, "~> 0.4"},
+      {:telemetry_poller, "~> 0.5"},
       {:telemetry_metrics, "~> 0.5"},
     ]
   end
