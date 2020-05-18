@@ -10,3 +10,4 @@ priv/static/
 .idea
 chavez.iml
 .github
+deploy.sh
