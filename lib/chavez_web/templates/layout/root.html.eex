@@ -11,7 +11,7 @@
   <body>
     <header>
     </header>
-    <main role="main" class="w-full">
+    <main role="main" class="w-full bg-gray-300">
       <%= @inner_content %>
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>

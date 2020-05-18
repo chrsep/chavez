@@ -1,14 +1,84 @@
-<div class="mx-auto max-w-2xl flex flex-col items-center">
-    <div class="mb-3">
-        Value: <%= @value %>
+<div class="mx-auto max-w-6xl flex pl-3 pt-3">
+    <div class="px-3 py-2 bg-white rounded shadow-lg text-sm">
+        Trials: <%= @tries %>
     </div>
-    <div class="flex">
-        <button phx-click="dec" class="bg-red-600">
-            Decrement
-        </button>
 
-        <button phx-click="inc" class="ml-3">
-            Increment
-        </button>
+    <div class="px-3 py-2 bg-white rounded shadow-lg ml-auto mr-3 text-sm">
+        <%= floor(@time/60) %> Minutes <%= rem(@time,60) %> Seconds
     </div>
+</div>
+<div
+    class="
+        mx-auto
+        max-w-6xl
+        flex
+        flex-col
+        items-center
+        grid
+        grid-flow-row
+        grid-cols-4
+        grid-rows-4
+        gap-3
+        p-3
+        pb-32
+        h-screen
+    ">
+    <%= for index <- 0..15 do  %>
+      <div
+        <%= unless (@first != nil && @second != nil) || @truthTable[index] do %>
+            phx-click="box-click"
+            tabindex="<%= index %>"
+        <% end %>
+        phx-value-selected="<%= index %>"
+        style="-webkit-tap-highlight-color: #00000000;"
+        class="
+            <%= if @first != nil && @second != nil && @first != index && @second != index do %>
+                opacity-25
+            <% else %>
+                opacity-100
+            <% end %>
+            cursor-pointer
+            outline-none
+            h-full
+            shadow-xs
+            rounded
+            transition-all
+            duration-100
+            ease-in-out
+            flex
+            items-center
+            justify-center
+            focus:shadow-outline
+            <%= if @truthTable[index] do %>
+                bg-green-500
+            <% else %>
+                bg-white
+            <% end %>
+
+            <%= if @first == index || @second == index || @truthTable[index] do %>
+                shadow-lg
+            <% end %>
+        ">
+            <h1 class="
+                font-bold
+                text-5xl
+                md:text-6xl
+                opacity-0
+                transition-opacity
+                duration-100
+                ease-in-out
+                select-none
+                <%= if @truthTable[index] do %>
+                    text-white
+                <% else %>
+                    text-blue-800
+                <% end %>
+                <%= if @first == index || @second == index || @truthTable[index] do %>
+                    opacity-100
+                <% end %>
+            ">
+                <%= @valueTable[index] %>
+            </h1>
+        </div>
+    <% end %>
 </div>
