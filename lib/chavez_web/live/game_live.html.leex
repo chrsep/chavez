@@ -1,4 +1,14 @@
-Current temperature: <%= @temperature %>
-<button phx-click="inc_temperature" class="bg-black">
-    Test test test
-</button>
+<div class="mx-auto max-w-2xl flex flex-col items-center">
+    <div class="mb-3">
+        Value: <%= @value %>
+    </div>
+    <div class="flex">
+        <button phx-click="dec" class="bg-red-700">
+            Decrement
+        </button>
+
+        <button phx-click="inc" class="ml-3">
+            Increment
+        </button>
+    </div>
+</div>
