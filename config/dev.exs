@@ -36,7 +36,6 @@ config :chavez,
        live_view: [
          signing_salt: "ACApZiWV+As3YKYeuhEPlJOGQyVMORsJ"
        ]
-
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed
@@ -69,7 +68,8 @@ config :chavez,
            ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
            ~r"priv/gettext/.*(po)$",
            ~r"lib/chavez_web/{live,views}/.*(ex)$",
-           ~r"lib/chavez_web/templates/.*(eex)$"
+           ~r"lib/chavez_web/templates/.*(eex)$",
+           ~r{lib/chavez_web/live/.*(ex)$}
          ]
        ]
 

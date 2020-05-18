@@ -20,7 +20,7 @@ config :chavez,
        ],
        root: ".",
        secret_key_base: System.get_env("SECRET_KEY_BASE"),
-       check_origin: ["https://chavez.chrsep.dev"],
+       check_origin: [System.get_env("CHECK_ORIGIN")],
        live_view: [
          signing_salt: System.get_env("LIVE_VIEW_SALT")
        ]
