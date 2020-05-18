@@ -77,8 +77,37 @@
                     opacity-100
                 <% end %>
             ">
-                <%= @valueTable[index] %>
+                <%= if @first == index || @second == index || @truthTable[index] do %>
+                    <%= @valueTable[index] %>
+                <% end %>
             </h1>
         </div>
     <% end %>
 </div>
+<%= if @finish do %>
+    <div class="top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 fixed flex items-center justify-center">
+        <div class="mx-3 bg-white p-6 rounded shadow-lg w-full max-w-sm">
+            <div class="text-3xl font-bold mb-6">Finished !!!</div>
+            <div class="text-xl">
+                <%= floor(@time/60) %> Minutes <%= rem(@time,60) %> Seconds
+            </div>
+
+            <div class="text-xl">
+                Name is <%= @name %>
+            </div>
+
+            <div class="text-xl mb-6">
+                <%= @tries %> Trial and Errors
+            </div>
+            <form phx-change="form-change" phx-submit="save">
+                <label class="flex flex-col mb-3">
+                    Name:
+                    <input type="text" required autocomplete="name"/>
+                </label>
+                <button type="submit" class="w-full">
+                    Submit to Leaderboard
+                </button>
+            </form>
+        </div>
+    </div>
+<% end %>
