@@ -13,6 +13,7 @@ defmodule ChavezWeb.GameLive do
 
     socket =
       socket
+      |> assign(:saved, false)
       |> assign(:name, "")
       |> assign(:tref, nil)
       |> assign(:tries, 0)
@@ -82,6 +83,39 @@ defmodule ChavezWeb.GameLive do
     end
   end
 
+  def handle_event("name-change", %{"name" => name}, socket) do
+    {:noreply, assign(socket, :name, name)}
+  end
+
+  def handle_event("save-result", _, socket) do
+    {:noreply, assign(socket, :saved, true)}
+  end
+
+  def handle_event("play-again-click", _, socket) do
+    possibleValues = 1..8
+
+    values =
+      Enum.concat(possibleValues, possibleValues)
+      |> Enum.shuffle()
+
+    truth_table = for index <- 0..15, into: %{}, do: {index, false}
+    value_table = for index <- 0..15, into: %{}, do: {index, Enum.at(values, index)}
+
+    {
+      :noreply,
+      socket
+      |> assign(:saved, false)
+      |> assign(:tref, nil)
+      |> assign(:tries, 0)
+      |> assign(:time, 0)
+      |> assign(:valueTable, value_table)
+      |> assign(:truthTable, truth_table)
+      |> assign(:first, nil)
+      |> assign(:second, nil)
+      |> assign(:finish, false)
+    }
+  end
+
   def handle_info(:reset, socket) do
     {
       :noreply,
@@ -102,10 +136,9 @@ defmodule ChavezWeb.GameLive do
   end
 
   def handle_info(:increment_time, socket) do
-    {:noreply, update(socket, :time, &(&1 + 1))}
-  end
-
-  def handle_event("name-change", %{"name" => name}, socket) do
-    {:noreply, assign(socket,:name, name)}
+    case socket.assigns do
+      %{:finish => finish} when finish -> {:noreply, socket}
+      _ -> {:noreply, update(socket, :time, &(&1 + 1))}
+    end
   end
 end
