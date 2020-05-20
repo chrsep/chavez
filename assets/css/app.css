@@ -5,7 +5,10 @@
 @tailwind utilities;
 
 button {
-    @apply px-3 py-2 bg-blue-900 text-white rounded;
+    @apply px-3 py-2 bg-blue-700 text-white rounded;
+    &.secondary {
+        @apply bg-white text-blue-800 border;
+    }
 }
 
 input {
