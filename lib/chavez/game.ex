@@ -18,7 +18,7 @@ defmodule Chavez.Game do
 
   """
   def list_scores do
-    Repo.all(Score)
+    Repo.all(Score) |> generate_score()
   end
 
   @doc """
@@ -100,5 +100,11 @@ defmodule Chavez.Game do
   """
   def change_score(%Score{} = score, attrs \\ %{}) do
     Score.changeset(score, attrs)
+  end
+
+  def generate_score(scores) do
+    scores
+    |> Enum.map(&%{&1 | score: &1.time * (&1.tries * 100)})
+    |> Enum.sort(&(&1.score < &2.score))
   end
 end

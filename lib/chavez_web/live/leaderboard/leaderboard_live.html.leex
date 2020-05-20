@@ -1,0 +1,24 @@
+<div class="mx-auto max-w-6xl flex flex-col pl-3 pt-3 pr-3 min-h-screen">
+    <h1 class="text-3xl mx-auto mb-3">
+        Leaderboards
+    </h1>
+    <%= for score <- @scores do%>
+        <div class="bg-white p-3 rounded shadow-md mb-3">
+            <div> <%= score.name %> </div>
+            <div class="flex">
+                <div class="text-sm mr-2 text-green-800">
+                    <%= if floor(score.time/60) > 0 do%>
+                        <%= floor(score.time/60) %>m
+                    <% end %>
+                    <%= rem(score.time,60) %>s
+                </div>
+                <div class="text-sm text-blue-800"><%= score.tries %> tries</div>
+            </div>
+        </div>
+    <% end %>
+</div>
+<div class="fixed bottom-0 left-0 right-0 p-3">
+    <button class="shadow-md w-full">
+        Play
+    </button>
+</div>
