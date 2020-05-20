@@ -6,7 +6,6 @@ defmodule Chavez.Repo.Migrations.CreateScores do
       add :name, :string
       add :tries, :integer
       add :time, :integer
-      add :score, :integer
 
       timestamps()
     end

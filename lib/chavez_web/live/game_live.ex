@@ -1,12 +1,14 @@
 defmodule ChavezWeb.GameLive do
   use Phoenix.LiveView
 
+  import Chavez.Game
+
   def mount(_params, _session, socket) do
     possibleValues = 1..8
 
-    values =
-      Enum.concat(possibleValues, possibleValues)
-      |> Enum.shuffle()
+    values = Enum.concat(possibleValues, possibleValues)
+
+    #      |> Enum.shuffle()
 
     truth_table = for index <- 0..15, into: %{}, do: {index, false}
     value_table = for index <- 0..15, into: %{}, do: {index, Enum.at(values, index)}
@@ -87,16 +89,17 @@ defmodule ChavezWeb.GameLive do
     {:noreply, assign(socket, :name, name)}
   end
 
-  def handle_event("save-result", _, socket) do
+  def handle_event("save-result", _, %{assigns: assigns} = socket) do
+    create_score(assigns)
     {:noreply, assign(socket, :saved, true)}
   end
 
   def handle_event("play-again-click", _, socket) do
     possibleValues = 1..8
 
-    values =
-      Enum.concat(possibleValues, possibleValues)
-      |> Enum.shuffle()
+    values = Enum.concat(possibleValues, possibleValues)
+
+    #      |> Enum.shuffle()
 
     truth_table = for index <- 0..15, into: %{}, do: {index, false}
     value_table = for index <- 0..15, into: %{}, do: {index, Enum.at(values, index)}
