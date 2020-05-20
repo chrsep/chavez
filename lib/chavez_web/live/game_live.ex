@@ -8,8 +8,8 @@ defmodule ChavezWeb.GameLive do
       Enum.concat(possibleValues, possibleValues)
       |> Enum.shuffle()
 
-    truthTable = for index <- 0..15, into: %{}, do: {index, false}
-    valueTable = for index <- 0..15, into: %{}, do: {index, Enum.at(values, index)}
+    truth_table = for index <- 0..15, into: %{}, do: {index, false}
+    value_table = for index <- 0..15, into: %{}, do: {index, Enum.at(values, index)}
 
     socket =
       socket
@@ -17,8 +17,8 @@ defmodule ChavezWeb.GameLive do
       |> assign(:tref, nil)
       |> assign(:tries, 0)
       |> assign(:time, 0)
-      |> assign(:valueTable, valueTable)
-      |> assign(:truthTable, truthTable)
+      |> assign(:valueTable, value_table)
+      |> assign(:truthTable, truth_table)
       |> assign(:first, nil)
       |> assign(:second, nil)
       |> assign(:finish, false)
@@ -103,5 +103,9 @@ defmodule ChavezWeb.GameLive do
 
   def handle_info(:increment_time, socket) do
     {:noreply, update(socket, :time, &(&1 + 1))}
+  end
+
+  def handle_event("name-change", %{"name" => name}, socket) do
+    {:noreply, assign(socket,:name, name)}
   end
 end

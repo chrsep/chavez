@@ -32,7 +32,7 @@
         phx-value-selected="<%= index %>"
         style="-webkit-tap-highlight-color: #00000000;"
         class="
-            <%= if @first != nil && @second != nil && @first != index && @second != index do %>
+            <%= if !@finish && @first != nil && @second != nil && @first != index && @second != index do %>
                 opacity-25
             <% else %>
                 opacity-100
@@ -92,17 +92,13 @@
                 <%= floor(@time/60) %> Minutes <%= rem(@time,60) %> Seconds
             </div>
 
-            <div class="text-xl">
-                Name is <%= @name %>
-            </div>
-
             <div class="text-xl mb-6">
                 <%= @tries %> Trial and Errors
             </div>
-            <form phx-change="form-change" phx-submit="save">
+            <form phx-change="name-change" phx-submit="save-name">
                 <label class="flex flex-col mb-3">
                     Name:
-                    <input type="text" required autocomplete="name"/>
+                    <input type="text" name="name" required autocomplete="name" value="<%= @name %>"/>
                 </label>
                 <button type="submit" class="w-full">
                     Submit to Leaderboard
