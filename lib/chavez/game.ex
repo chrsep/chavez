@@ -50,9 +50,12 @@ defmodule Chavez.Game do
 
   """
   def create_score(attrs \\ %{}) do
-    %Score{}
+    case Repo.get_by(Score, [name: attrs.name]) do
+      nil -> %Score{}
+      score -> score
+    end
     |> Score.changeset(attrs)
-    |> Repo.insert()
+    |> Repo.insert_or_update()
   end
 
   @doc """

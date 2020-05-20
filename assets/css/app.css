@@ -14,3 +14,12 @@ button {
 input {
     @apply px-3 py-2 shadow-inner bg-gray-200 rounded;
 }
+
+@keyframes color-popin {
+    0%   {background: yellow; }
+    100% {background: white; }
+}
+
+.popin {
+    animation: color-popin 2s;
+}

@@ -7,8 +7,7 @@ defmodule ChavezWeb.GameLive do
     possibleValues = 1..8
 
     values = Enum.concat(possibleValues, possibleValues)
-
-    #      |> Enum.shuffle()
+          |> Enum.shuffle()
 
     truth_table = for index <- 0..15, into: %{}, do: {index, false}
     value_table = for index <- 0..15, into: %{}, do: {index, Enum.at(values, index)}
@@ -98,8 +97,7 @@ defmodule ChavezWeb.GameLive do
     possibleValues = 1..8
 
     values = Enum.concat(possibleValues, possibleValues)
-
-    #      |> Enum.shuffle()
+          |> Enum.shuffle()
 
     truth_table = for index <- 0..15, into: %{}, do: {index, false}
     value_table = for index <- 0..15, into: %{}, do: {index, Enum.at(values, index)}
