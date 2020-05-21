@@ -1,0 +1,139 @@
+<div class="mx-auto max-w-6xl flex pl-3 pt-3">
+    <div class="px-3 py-2 bg-white rounded shadow-lg text-sm">
+        Trials: <%= @tries %>
+    </div>
+
+    <div class="px-3 py-2 bg-white rounded shadow-lg ml-auto mr-3 text-sm">
+        <%= floor(@time/60) %> Minutes <%= rem(@time,60) %> Seconds
+    </div>
+</div>
+<div
+    class="
+        mx-auto
+        max-w-6xl
+        flex
+        flex-col
+        items-center
+        grid
+        grid-flow-row
+        grid-cols-4
+        grid-rows-4
+        gap-3
+        p-3
+        pb-32
+        h-screen
+    ">
+    <%= for index <- 0..15 do  %>
+      <div
+        <%= unless (@first != nil && @second != nil) || @truthTable[index] do %>
+            phx-click="box-click"
+            tabindex="<%= index %>"
+        <% end %>
+        phx-value-selected="<%= index %>"
+        style="-webkit-tap-highlight-color: #00000000;"
+        class="
+            <%= if !@finish && @first != nil && @second != nil && @first != index && @second != index do %>
+                opacity-25
+            <% else %>
+                opacity-100
+            <% end %>
+            cursor-pointer
+            outline-none
+            h-full
+            shadow-xs
+            rounded
+            transition-all
+            duration-100
+            ease-in-out
+            flex
+            items-center
+            justify-center
+            focus:shadow-outline
+            <%= if @truthTable[index] do %>
+                bg-green-500
+            <% else %>
+                bg-white
+            <% end %>
+
+            <%= if @first == index || @second == index || @truthTable[index] do %>
+                shadow-lg
+            <% end %>
+        ">
+            <h1 class="
+                font-bold
+                text-5xl
+                md:text-6xl
+                opacity-0
+                transition-opacity
+                duration-100
+                ease-in-out
+                select-none
+                <%= if @truthTable[index] do %>
+                    text-white
+                <% else %>
+                    text-blue-800
+                <% end %>
+                <%= if @first == index || @second == index || @truthTable[index] do %>
+                    opacity-100
+                <% end %>
+            ">
+                <%= if @first == index || @second == index || @truthTable[index] do %>
+                    <%= @valueTable[index] %>
+                <% end %>
+            </h1>
+        </div>
+    <% end %>
+    <a href="/leaderboard" class="w-full">
+        <button>
+            leaderboards
+        </button>
+    </a>
+</div>
+<%= if @finish do %>
+    <div class="top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 fixed flex items-center justify-center">
+        <div class="mx-3 bg-white p-6 rounded shadow-lg w-full max-w-sm">
+            <%= if @saved do %>
+                <div class="text-3xl font-bold mb-3">
+                    Hot Damn <%= @name %>
+                </div>
+            <% else %>
+                <div class="text-3xl font-bold mb-3">Finished !!!</div>
+            <% end %>
+            <div class="flex">
+                <div class="text-md mr-3">
+                    <%= if floor(@time/60) > 0 do%>
+                        <%= floor(@time/60) %> Minute
+                    <% end %>
+                    <%= rem(@time,60) %> Seconds
+                </div>
+
+                <div class="text-md mb-6">
+                    <%= @tries %> Tries
+                </div>
+            </div>
+            <%= if !@saved do %>
+                <form phx-change="name-change" phx-submit="save-result">
+                    <label class="flex flex-col mb-3">
+                        Name:
+                        <input type="text" name="name" required autocomplete="name" value="<%= @name %>"/>
+                    </label>
+                    <button type="submit" class="w-full">
+                        Submit to Leaderboard
+                    </button>
+                </form>
+            <% else %>
+                <div class="flex">
+                    <a href="/leaderboard" class="block mr-3">
+                        <button type="submit" class="secondary w-full">
+                            See Leaderboard
+                        </button>
+                    </a>
+                    <button type="submit" class="flex-shrink-0" phx-click="play-again-click" >
+                        Play Again
+                    </button>
+                </div>
+            <% end %>
+        </div>
+    </div>
+<% end %>
+

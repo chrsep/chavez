@@ -1,9 +1,25 @@
-/* This file is for your main application css. */
-
-@import "./phoenix.css";
 @import "../node_modules/nprogress/nprogress.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+button {
+    @apply px-3 py-2 bg-blue-700 text-white rounded;
+    &.secondary {
+        @apply bg-white text-blue-800 border;
+    }
+}
+
+input {
+    @apply px-3 py-2 shadow-inner bg-gray-200 rounded;
+}
+
+@keyframes color-popin {
+    0%   {background: yellow; }
+    100% {background: white; }
+}
+
+.popin {
+    animation: color-popin 2s;
+}

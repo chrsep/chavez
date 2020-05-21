@@ -18,6 +18,7 @@ defmodule ChavezWeb.Router do
     pipe_through :browser
 
     live "/", GameLive
+    live "/leaderboard", LeaderboardLive
   end
 
   # TODO: Secure this in prod

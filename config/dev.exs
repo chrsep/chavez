@@ -36,6 +36,7 @@ config :chavez,
        live_view: [
          signing_salt: "ACApZiWV+As3YKYeuhEPlJOGQyVMORsJ"
        ]
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed
