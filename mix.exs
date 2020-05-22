@@ -44,7 +44,7 @@ defmodule Chavez.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.2"},
       {:distillery, "~> 2.1"},
-      {:phoenix_live_view, "~> 0.12.1"},
+      {:phoenix_live_view, "~> 0.13.0"},
       {:floki, ">= 0.0.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.2"},
       {:telemetry_poller, "~> 0.5"},
