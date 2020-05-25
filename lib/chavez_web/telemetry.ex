@@ -22,17 +22,15 @@ defmodule ChavezWeb.Telemetry do
   def metrics do
     [
       # Phoenix Metrics
-      summary(
-        "phoenix.endpoint.stop.duration",
+      summary("phoenix.endpoint.stop.duration",
         unit: {:native, :millisecond}
       ),
-      summary(
-        "phoenix.router_dispatch.stop.duration",
+      summary("phoenix.router_dispatch.stop.duration",
         tags: [:route],
         unit: {:native, :millisecond}
       ),
 
-      # Database Time Metrics
+      # Database Metrics
       summary("chavez.repo.query.total_time", unit: {:native, :millisecond}),
       summary("chavez.repo.query.decode_time", unit: {:native, :millisecond}),
       summary("chavez.repo.query.query_time", unit: {:native, :millisecond}),
@@ -48,6 +46,10 @@ defmodule ChavezWeb.Telemetry do
   end
 
   defp periodic_measurements do
-    []
+    [
+      # A module, function and arguments to be invoked periodically.
+      # This function must call :telemetry.execute/3 and a metric must be added above.
+      # {ChavezWeb, :count_users, []}
+    ]
   end
 end

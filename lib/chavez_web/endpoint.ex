@@ -1,16 +1,20 @@
 defmodule ChavezWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :chavez
 
+  # The session will be stored in the cookie and signed,
+  # this means its contents can be read but not tampered with.
+  # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
     key: "_chavez_key",
-    signing_salt: "K4dVUunW"
+    signing_salt: "eOnwBSBj"
   ]
 
-  socket "/socket",
-         ChavezWeb.UserSocket,
-         websocket: true,
-         longpoll: false
+  socket "/socket", ChavezWeb.UserSocket,
+    websocket: true,
+    longpoll: false
+
+  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -28,6 +32,7 @@ defmodule ChavezWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :chavez
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -44,19 +49,6 @@ defmodule ChavezWeb.Endpoint do
 
   plug Plug.MethodOverride
   plug Plug.Head
-
-  # The session will be stored in the cookie and signed,
-  # this means its contents can be read but not tampered with.
-  # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session, @session_options
-
   plug ChavezWeb.Router
-
-  socket "/live",
-         Phoenix.LiveView.Socket,
-         websocket: [
-           connect_info: [
-             session: @session_options
-           ]
-         ]
 end

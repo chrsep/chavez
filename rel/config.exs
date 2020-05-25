@@ -10,7 +10,7 @@
 use Distillery.Releases.Config,
     # This sets the default release built by `mix distillery.release`
     default_release: :default,
-    # This sets the default environment used by `mix distillery.release`
+      # This sets the default environment used by `mix distillery.release`
     default_environment: Mix.env()
 
 # For a full list of config options for both releases
@@ -31,20 +31,20 @@ environment :dev do
   # dev mode.
   set dev_mode: true
   set include_erts: false
-  set cookie: :"e309Zg&B|=R[_EGJv4EIa3Z$1uLC$$;NJ|F!dmayj?qu}[nDQi2fD*Bzj8D}3e|O"
+  set cookie: :"<Y)gS?TDb}mDE9gH&tI?jcn5NXS~Bw>VIXdwxTFocjOTkOFDpg%0J([v|.HsGoc1"
 end
 
 environment :prod do
   set include_erts: true
   set include_src: false
-  set cookie: :"0_FG|Neh6I0$jP/tAL`j0l?Y|@$.G>DIru]b`D9p})3DR~E^%`pHhv8Era8f[mD]"
+  set cookie: :"e92^m9yosMW}iN0WNK=/nYs/w&ISm7=vMnO(9S>cm[AH~f4G6`%M3>T5V6H2d=kf"
   set vm_args: "rel/vm.args"
   set config_providers: [
-    {Distillery.Releases.Config.Providers.Elixir, ["${RELEASE_ROOT_DIR}/etc/config.exs"]}
-  ]
+        {Distillery.Releases.Config.Providers.Elixir, ["${RELEASE_ROOT_DIR}/etc/config.exs"]}
+      ]
   set overlays: [
-    {:copy, "rel/config/config.exs", "etc/config.exs"}
-  ]
+        {:copy, "rel/config/config.exs", "etc/config.exs"}
+      ]
 end
 
 # You may define one or more releases in this file.
@@ -55,7 +55,7 @@ end
 release :chavez do
   set version: current_version(:chavez)
   set applications: [
-    :runtime_tools
-  ]
+        :runtime_tools
+      ]
 end
 

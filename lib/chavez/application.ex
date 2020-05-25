@@ -6,16 +6,17 @@ defmodule Chavez.Application do
   use Application
 
   def start(_type, _args) do
-    # List all child processes to be supervised
     children = [
       # Start the Ecto repository
       Chavez.Repo,
-      # Start the endpoint when the application starts
-      ChavezWeb.Endpoint,
-      # Starts a worker by calling: Chavez.Worker.start_link(arg)
-      # {Chavez.Worker, arg},
-      {Phoenix.PubSub, [name: Chavez.PubSub, adapter: Phoenix.PubSub.PG2]},
-      ChavezWeb.Telemetry
+      # Start the Telemetry supervisor
+      ChavezWeb.Telemetry,
+      # Start the PubSub system
+      {Phoenix.PubSub, name: Chavez.PubSub},
+      # Start the Endpoint (http/https)
+      ChavezWeb.Endpoint
+      # Start a worker by calling: Chavez.Worker.start_link(arg)
+      # {Chavez.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
