@@ -13,13 +13,10 @@ config :chavez,
 # Configures the endpoint
 config :chavez, ChavezWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "4bkuIYW17av5dKJ9HcRd1wEohfMFjcszP8auXbyA13RmkhgfEZzcppNJUoO8N3IU",
-  render_errors: [view: ChavezWeb.ErrorView, accepts: ~w(html json)],
-  server: true,
-  root: ".",
-  cache_static_manifest: "priv/static/cache_manifest.json",
+  secret_key_base: "Dwa/YOSRmm71XwESEq5nsOPwId7KolEGsu5D7VPQXyZckG2wwP8bHTcxFCd+066N",
+  render_errors: [view: ChavezWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Chavez.PubSub,
-  version: Application.spec(:chavez, :vsn)
+  live_view: [signing_salt: "ilSKCqF2"]
 
 # Configures Elixir's Logger
 config :logger, :console,

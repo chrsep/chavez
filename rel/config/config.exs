@@ -9,8 +9,10 @@ config :chavez,
        pool_size: 15
 
 port = String.to_integer(System.get_env("PORT") || "8080")
-config :chavez,
-       ChavezWeb.Endpoint,
+config :chavez, ChavezWeb.Endpoint,
+       cache_static_manifest: "priv/static/cache_manifest.json",
+       server: true,
+       root: ".",
        http: [
          port: port
        ],
