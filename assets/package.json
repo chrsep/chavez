@@ -23,7 +23,7 @@
     "postcss-import": "12.0.1",
     "postcss-loader": "3.0.0",
     "postcss-preset-env": "6.7.0",
-    "tailwindcss": "1.4.6",
+    "tailwindcss": "1.7.6",
     "terser-webpack-plugin": "2.3.6",
     "webpack": "5.0.0-beta.16",
     "webpack-bundle-analyzer": "3.8.0",
