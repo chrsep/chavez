@@ -1,6 +1,5 @@
 {
-  "automerge": true,
   "extends": [
-    "config:base"
+    "schedule:weekends"
   ]
 }
