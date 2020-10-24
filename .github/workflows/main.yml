@@ -22,7 +22,7 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Build and push docker image
-      uses: docker/build-push-action@v1.1.0
+      uses: docker/build-push-action@v2.0.1
       with:
         cache_froms: chrsep/chavez:latest
         username: ${{ secrets.DOCKER_USERNAME }}
