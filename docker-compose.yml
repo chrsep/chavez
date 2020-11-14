@@ -20,7 +20,7 @@ services:
 
   postgres:
     container_name: "chavez-postgres"
-    image: library/postgres:12.4
+    image: library/postgres:12.5
     environment:
       POSTGRES_PASSWORD: "postgres"
       POSTGRES_USER: "postgres"
