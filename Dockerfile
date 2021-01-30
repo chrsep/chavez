@@ -34,7 +34,7 @@ RUN mix distillery.release
 
 # =================== Setup deployment image =====================
 # Now copy it into our base image.
-FROM alpine:3.12.0
+FROM alpine:3.13.1
 RUN apk add --no-cache bash
 RUN mkdir -p /app/_build/prod
 WORKDIR /app
